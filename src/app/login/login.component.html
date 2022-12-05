@@ -6,13 +6,13 @@
     <h3 id="login-H">Login</h3>
     <form action="">
         <div class="mt-2">
-            <input type="text" (change)="acnoChange($event)" class="form-control  " [placeholder]="data" id="acid" name="accno">
+            <input type="text" #acno class="form-control  " [placeholder]="data" id="acid" name="accno">
         </div>
         <div class="mt-2">
-            <input type="password" (change)="pswChange($event)" class="form-control mt-2" placeholder="Password" id="pid" name="pasw">
+            <input type="password" #psw class="form-control mt-2" placeholder="Password" id="pid" name="pasw">
         </div>
         <div class="mb-2">
-            <button class="btn btn-primary mt-2 " type="submit" (click)="login()">Login</button>
+            <button class="btn btn-primary mt-2 " type="submit" (click)="login(psw,acno)">Login</button>
         </div>
         
     </form>

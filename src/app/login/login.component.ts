@@ -15,20 +15,64 @@ export class LoginComponent {
   1002:{acno:1002,username:"arun",password:123,balance:0},
   1003:{acno:1003,username:"mega",password:123,balance:0}}
 
-  login()
-  {
-    alert('Login clicked')
-  }
-  acnoChange(event:any){
-    console.log(event.target.value);
-    
-    this.acno=event.target.value
+  // login()
+  // {
+  //   // var userDetails=this.userDetails
+  //   // var acno=this.acno
+  //   // var psw=this.psw
+  //   // if(acno in userDetails)
+  //   // {
+  //   //   if(psw==userDetails[acno]["password"])
+  //   //   {
+  //   //     alert('Login Sussess!')
+  //   //   }
+  //   //   else{
+  //   //     alert('Incorrect password')
+  //   //   }
+     
+  //   // }
+  //   // else
+  //   // {
+  //   //   alert('User not found')
+  //   // }
 
+
+  // }
+  
+  login(a:any,b:any)
+  {
+    this.acno=a.value
+    this.psw=b.value
+
+    var userDetails=this.userDetails
+    var acno=this.acno
+    var psw=this.psw
+    if(acno in userDetails)
+    {
+      if(psw==userDetails[acno]["password"])
+      {
+        alert('Login Sussess!')
+      }
+      else{
+        alert('Incorrect password')
+      }
+     
+    }
+    else
+    {
+      alert('User not found')
+    }
   }
-  pswChange(event:any){
-    console.log(event.target.value);
+  // acnoChange(event:any){
+  //   console.log(event.target.value);
     
-    this.psw=event.target.value
+  //   this.acno=event.target.value
+
+  // }
+  // pswChange(event:any){
+  //   console.log(event.target.value);
     
-  }
+  //   this.psw=event.target.value
+    
+  // }
 }
