@@ -1,0 +1,11 @@
+.dashboard{
+    background-color: rgba(17, 17, 17, 0.452);
+}
+.dash-Head{
+    color: whitesmoke;
+}
+.history-div{
+    background-color: rgba(17, 17, 17, 0.452);
+    border-radius: 25px;
+    color: whitesmoke;
+}

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { DataService } from '../sevices/data.service';
 
 @Component({
   selector: 'app-login',
@@ -14,55 +16,47 @@ export class LoginComponent {
   1001:{acno:1001,username:"amal",password:123,balance:0},
   1002:{acno:1002,username:"arun",password:123,balance:0},
   1003:{acno:1003,username:"mega",password:123,balance:0}}
-
-  // login()
-  // {
-  //   // var userDetails=this.userDetails
-  //   // var acno=this.acno
-  //   // var psw=this.psw
-  //   // if(acno in userDetails)
-  //   // {
-  //   //   if(psw==userDetails[acno]["password"])
-  //   //   {
-  //   //     alert('Login Sussess!')
-  //   //   }
-  //   //   else{
-  //   //     alert('Incorrect password')
-  //   //   }
-     
-  //   // }
-  //   // else
-  //   // {
-  //   //   alert('User not found')
-  //   // }
-
-
-  // }
-  
-  login(a:any,b:any)
+constructor( private router :Router,private ds:DataService){}
+  login()
   {
-    this.acno=a.value
-    this.psw=b.value
-
-    var userDetails=this.userDetails
+    
     var acno=this.acno
     var psw=this.psw
-    if(acno in userDetails)
-    {
-      if(psw==userDetails[acno]["password"])
-      {
-        alert('Login Sussess!')
-      }
-      else{
-        alert('Incorrect password')
-      }
-     
+    const result=this.ds.login(acno,psw)
+    if(result){
+      alert('Login Success!')
+      this.router.navigateByUrl('dashboard')
     }
-    else
-    {
-      alert('User not found')
+    else{
+      alert('Incorrect Username/Password')
     }
+
   }
+  
+  // login(a:any,b:any)
+  // {
+  //   this.acno=a.value
+  //   this.psw=b.value
+
+  //   var userDetails=this.userDetails
+  //   var acno=this.acno
+  //   var psw=this.psw
+  //   if(acno in userDetails)
+  //   {
+  //     if(psw==userDetails[acno]["password"])
+  //     {
+  //       alert('Login Sussess!')
+  //     }
+  //     else{
+  //       alert('Incorrect password')
+  //     }
+     
+  //   }
+  //   else
+  //   {
+  //     alert('User not found')
+  //   }
+  // }
   // acnoChange(event:any){
   //   console.log(event.target.value);
     
