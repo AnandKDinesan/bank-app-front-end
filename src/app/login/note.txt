@@ -12,3 +12,17 @@ html file-view
 
         1.2.1 event binding  (eventname)="method name()"
         1.2.2 event binding using $event    (eventname)="methodname($event)"
+
+
+Angular Directives-To manage DOM in angular
+--------------------
+1.Structural Directives -to handle stuctured datas in view of a component
+     -ngFor -can dirrectly apply in  html to access elements from array
+
+     -ngIf
+2.Attribute Directive
+
+
+date and time in angular
+-------------------------
+date-It is a class in angular .Create an object of this class to access date and time

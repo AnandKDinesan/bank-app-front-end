@@ -1,9 +1,15 @@
-<h2 class="text-white ms-2">Welcome {{user}}</h2>
+<h2 class="text-white ms-2">Welcome {{user}} </h2>
+<h4 class="text-white ms-2"> Date and Time:{{dateandtime | date : 'short'}}</h4>
 <div class="p-3 ">
     <a routerLink="/transaction" class="history-div container border p-3 ms-3 mt-3">View transaction history</a>
 </div>
+<div class="container  p-3 ms-3 mt-3" >
+    <button class="btn btn-danger " (click)="logout()">Logout</button>
+    <button class="btn btn-danger ms-2 " (click)="deleteconfirm()">Delete</button>
+</div>
 
-<div class="container w-50 border text-center dashboard" >
+<app-deleteconfim [item]="acno"></app-deleteconfim>
+<div [ngClass]="acno?'style':''" class="container w-50 border text-center dashboard" >
     <h3 class="dash-Head mt-3">Deposit</h3>
     <div class="mt-2 p-2">
         <form action="" (ngSubmit)="deposit()" [formGroup]="depositform">
@@ -33,10 +39,10 @@
     </div>
 </div>
 
-<div class="container w-50 border text-center dashboard mt-3" >
+<div [ngClass]="acno?'style':''" class="container w-50 border text-center dashboard mt-3" >
     <h3 class="dash-Head mt-3">Withdraw</h3>
     <div class="mt-2 p-2">
-        <form action="" (ngSubmit)="Withdraw()" [formGroup]="withdrawlform" >
+        <form action=""  (ngSubmit)="Withdraw()" [formGroup]="withdrawlform" >
             <div class="mt-2 p-2">
                 <input type="text" id="accno1" name="acno1" formControlName="acno1" class="form-control mt-2 p-2" placeholder="Account Number">
             </div>
