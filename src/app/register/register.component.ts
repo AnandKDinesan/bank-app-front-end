@@ -23,18 +23,17 @@ register(){
     var uname=this.registerForm.value.uname
     var acno=this.registerForm.value.acno
     var psw=this.registerForm.value.psw
-   const result= this.ds.register(acno,uname,psw)
+    
 
    if(this.registerForm.valid){
-    if(result)
-   {
-    alert('registration success')
-    this.router.navigateByUrl('')
-   }
-   else{
-    alert('Account number already exist')
-    this.router.navigateByUrl('')
-   }
+    this.ds.register(acno,uname,psw).subscribe((result:any)=>{
+      alert(result.message)
+      this.router.navigateByUrl('')
+    },
+    result=>{
+      alert(result.error.message)
+      this.router.navigateByUrl('')
+    })
    }
    else{
     alert('Invalid form')

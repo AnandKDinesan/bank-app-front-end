@@ -26,3 +26,49 @@ Angular Directives-To manage DOM in angular
 date and time in angular
 -------------------------
 date-It is a class in angular .Create an object of this class to access date and time
+
+parent child components and communication in angular
+----------------------------------------------
+@Input- parent child data sharing
+@Output-Child to parent data sharing
+data can only be share via selector of component
+
+User defined event creation in angular
+-----------------------------------
+EventEmitter(from angular core)-class used to create events
+emit()--to start event
+
+Angular pipe
+------------
+to transform data into another format
+     eg-date pipe
+
+CLIENT SERVER INTEGRARTION
+--------------------------------
+http request creation
+------------------------
+
+httpClientModule -module 
+httpClient       -class
+
+     
+
+asynchronous request in typescript
+--------------------------------------
+js- promise  -- reslove   then
+              --  reject  catch()
+
+ts- observable   --reslove  subscribe()
+                 --reject   catch()
+Rxjs - library used to solve asynchronous code in typescript
+
+append token in headers
+----------------------------
+create header
+
+    HttpHeaders - class to create header of object
+    create an object of this class for creating header 
+    eg:let headers=new HttpHeaders()
+
+    append token in header object
+    eg. headers.append('access-token',token)

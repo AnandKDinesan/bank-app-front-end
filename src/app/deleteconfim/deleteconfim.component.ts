@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input,Output } from '@angular/core';
 
 @Component({
   selector: 'app-deleteconfim',
@@ -8,4 +8,15 @@ import { Component, Input } from '@angular/core';
 export class DeleteconfimComponent {
   @Input() item:String|undefined
 
+  //eventcreation
+
+  @Output() onCancel=new EventEmitter()
+  @Output() onDelete=new EventEmitter()
+  cancel()
+  {
+    this.onCancel.emit()
+  }
+  delete(){
+    this.onDelete.emit(this.item)
+  }
 }

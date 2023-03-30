@@ -8,7 +8,7 @@
     <button class="btn btn-danger ms-2 " (click)="deleteconfirm()">Delete</button>
 </div>
 
-<app-deleteconfim [item]="acno"></app-deleteconfim>
+<app-deleteconfim (onDelete)="delete($event)" (onCancel)="oncancel()" [item]="acno"></app-deleteconfim>
 <div [ngClass]="acno?'style':''" class="container w-50 border text-center dashboard" >
     <h3 class="dash-Head mt-3">Deposit</h3>
     <div class="mt-2 p-2">

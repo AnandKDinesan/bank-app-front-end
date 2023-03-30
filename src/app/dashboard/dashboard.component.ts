@@ -19,7 +19,8 @@ export class DashboardComponent {
   dateandtime:any
   constructor(private ds: DataService, private fb: FormBuilder, private router: Router) {
     //accessing user name
-    this.user = this.ds.currentuser
+    if(localStorage.getItem('currentuser'))
+    this.user = JSON.parse(localStorage.getItem('currentuser') || '')
 
     //accessing date and time
     this.dateandtime=new Date()
@@ -27,7 +28,7 @@ export class DashboardComponent {
 
   }
   ngOnInit():void {
-    if(!localStorage.getItem('currentacno'))
+    if(!localStorage.getItem('token'))
     {
       alert('Please login first')
       this.router.navigateByUrl('')
@@ -42,14 +43,14 @@ export class DashboardComponent {
     var acno = this.depositform.value.acno
     var psw = this.depositform.value.psw
     var amnt = this.depositform.value.amnt
-    const result = this.ds.deposit(acno, psw, amnt)
+     
     if (this.depositform.valid) {
-      if (result) {
-        alert(`${amnt} creadited to your account.Available balance is:${result}`)
-      }
-      else {
-        alert('Incorrect Password')
-      }
+      this.ds.deposit(acno, psw, amnt).subscribe((result:any)=>{
+        alert(`${amnt} is credited to your account.Available balance is:${result.message}`)
+       },
+       result=>{
+        alert(result.error.message)
+       })
     }
     else {
       alert('Invalid form')
@@ -67,11 +68,14 @@ export class DashboardComponent {
     var acno1 = this.withdrawlform.value.acno1
     var psw1 = this.withdrawlform.value.psw1
     var amount1 = this.withdrawlform.value.amount1
-    const result = this.ds.withdraw(acno1, psw1, amount1)
+     
     if (this.withdrawlform.valid) {
-      if (result) {
-        alert(`${amount1} debited from your account.Available balance is:${result}`)
-      }
+      this.ds.withdraw(acno1, psw1, amount1).subscribe((result:any)=>{
+        alert(`${amount1} is credited to your account.Available balance is:${result.message}`)
+     },
+     result=>{
+      alert(result.error.message)
+     })
     }
     else {
       alert('Invalid Form')
@@ -83,9 +87,25 @@ export class DashboardComponent {
   logout() {
     localStorage.removeItem('currentuser')
     localStorage.removeItem('currentacno')
+    localStorage.removeItem('token')
     this.router.navigateByUrl('')
   }
   deleteconfirm(){
     this.acno=JSON.parse(localStorage.getItem('currentacno') || "")
+  }
+  oncancel(){
+    this.acno=""
+  }
+  delete(event:any){
+  // alert(event)
+  this.ds.deleteacc(event).subscribe((result:any)=>{
+    alert(result.message)
+
+    this.logout()
+  },
+  result=>{
+    alert(result.error.message)
+  })
+
   }
 }

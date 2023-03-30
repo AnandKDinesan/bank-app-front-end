@@ -11,6 +11,7 @@ import { DataService } from '../sevices/data.service';
 export class LoginComponent {
   aim="Your perfect banking Partner"
   data="Enter Account Number"
+  // successMsg:booean''
   // acno=''
   // psw=''
   userDetails:any={1000:{acno:1000,username:"anu",password:123,balance:0},
@@ -25,15 +26,19 @@ psw:['',[Validators.required,Validators.pattern('[0-9]+')]]})
     
     var acno=this.loginForm.value.acno
     var psw=this.loginForm.value.psw
-    const result=this.ds.login(acno,psw)
+    
     if(this.loginForm.valid){
-      if(result){
-        alert('Login Success!')
+      this.ds.login(acno,psw).subscribe((result:any)=>{
+
+        localStorage.setItem('currentuser',JSON.stringify(result.currentUser))
+        localStorage.setItem('currentacno',JSON.stringify(result.currentAcno))
+        localStorage.setItem('token',JSON.stringify(result.token))
+        alert(result.message)
         this.router.navigateByUrl('dashboard')
-      }
-      else{
-        alert('Incorrect Username/Password')
-      }
+      },
+      result=>{
+        alert(result.error.message)
+      })
     }
     else{
       alert('Invalid form')
